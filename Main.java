@@ -15,37 +15,40 @@ import static java.lang.Math.pow;
  */
 public class Main {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    InputValidator validator = new InputValidator(scanner);
-
-    // Обработка аргументов командной строки для возведения в степень
-
     if (args.length >= 2) {
-      try {
-        double result = powerFromStrings(args[0], args[1]);
-        System.out.printf("%s ^ %s = %.2f\n", args[0], args[1], result);
-      } catch (Exception e) {
-        System.out.println("Ошибка: " + e.getMessage());
-      }
-    } else {
-      System.out.println("=== ВОЗВЕДЕНИЕ В СТЕПЕНЬ ===");
-
-      System.out.print("Введите основание X: ");
-      String xStr = scanner.nextLine();
-
-      System.out.print("Введите показатель степени Y: ");
-      String yStr = scanner.nextLine();
-
-      try {
-        double result = powerFromStrings(xStr, yStr);
-        System.out.printf("%s ^ %s = %.2f\n", xStr, yStr, result);
-      } catch (Exception e) {
-        System.out.println("Ошибка: " + e.getMessage());
-      }
+      executePowerCalculation(args);
+      return;
     }
 
+    runInteractiveMenu();
+  }
 
-    //Отображение главного меню приложения
+  /**
+   * Выполнение возведения в степень из аргументов командной строки
+   */
+  private static void executePowerCalculation(String[] args) {
+    System.out.println("=== ВОЗВЕДЕНИЕ В СТЕПЕНЬ ИЗ АРГУМЕНТОВ КОМАНДНОЙ СТРОКИ ===");
+
+    try {
+      String xStr = args[0];
+      String yStr = args[1];
+
+      double result = powerFromStrings(xStr, yStr);
+      System.out.printf("Результат: %s ^ %s = %.2f\n", xStr, yStr, result);
+
+    } catch (NumberFormatException e) {
+      System.out.println("Ошибка: аргументы должны быть целыми числами");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Ошибка: " + e.getMessage());
+    } catch (Exception e) {
+      System.out.println("Ошибка вычисления: " + e.getMessage());
+    }
+  }
+
+
+  private static void runInteractiveMenu() {
+    Scanner scanner = new Scanner(System.in);
+    InputValidator validator = new InputValidator(scanner);
     System.out.println("=== ПРОГРАММА РЕШЕНИЯ ЗАДАЧ ===");
 
     boolean running = true;
@@ -65,10 +68,13 @@ public class Main {
           break;
         case 4:
           runShapesTask(validator);
+          break;
         case 5:
           demonstratePointEquals(validator);
-          case 6:
-            demonstratePointCloning(validator);
+          break;
+        case 6:
+          demonstratePointCloning(validator);
+          break;
         case 7:
           running = false;
           break;
@@ -334,7 +340,6 @@ public class Main {
       System.out.println("4. Создать треугольник");
       System.out.println("5. Демонстрация полиморфизма (общая площадь)");
       System.out.println("6. Демонстрация замкнутой ломаной квадрата");
-
       System.out.println("7. Завершить работу");
 
       int choice = validator.getMenuChoice("Выберите действие: ", 7);
@@ -357,7 +362,7 @@ public class Main {
           break;
         case 6:
           demonstrateSquarePolyline(validator);
-          break;
+        break;
         case 7:
           working = false;
           break;
@@ -375,7 +380,7 @@ public class Main {
     int radius = validator.getValidRadius("Введите радиус: ");
 
     Circle circle = new Circle(centerX, centerY, radius);
-    System.out.println("✓ Создан: " + circle.toString());
+    System.out.println(" Создан: " + circle.toString());
     System.out.println("Площадь круга: " + String.format("%.2f", circle.getArea()));
   }
 
@@ -389,7 +394,7 @@ public class Main {
     int side = validator.getValidSide("Введите длину стороны: ");
 
     Square square = new Square(x, y, side);
-    System.out.println("✓ Создан: " + square.toString());
+    System.out.println(" Создан: " + square.toString());
     System.out.println("Площадь квадрата: " + String.format("%.2f", square.getArea()));
   }
 
@@ -404,7 +409,7 @@ public class Main {
     int height = validator.getValidHeight("Введите высоту: ");
 
     Rectangle rectangle = new Rectangle(x, y, width, height);
-    System.out.println("✓ Создан: " + rectangle.toString());
+    System.out.println(" Создан: " + rectangle.toString());
     System.out.println("Площадь прямоугольника: " + String.format("%.2f", rectangle.getArea()));
   }
 
@@ -435,19 +440,19 @@ public class Main {
 
       if (validator.isValidTriangle(a, b, c)) {
         Triangle triangle = new Triangle(a, b, c);
-        System.out.println("✓ Создан: " + triangle.toString());
+        System.out.println(" Создан: " + triangle.toString());
         System.out.println("Площадь треугольника: " + String.format("%.2f", triangle.getArea()));
         return;
       } else {
         attempts++;
-        System.out.println("✗ Ошибка: точки лежат на одной прямой. Попытка " + attempts + " из " + maxAttempts);
+        System.out.println(" Ошибка: точки лежат на одной прямой. Попытка " + attempts + " из " + maxAttempts);
         if (attempts < maxAttempts) {
           System.out.println("Попробуйте ввести другие координаты");
         }
       }
     }
 
-    System.out.println("✗ Не удалось создать треугольник после " + maxAttempts + " попыток");
+    System.out.println(" Не удалось создать треугольник после " + maxAttempts + " попыток");
   }
 
   //Демонстрация полиморфизма с геометрическими фигурами
@@ -530,7 +535,7 @@ public class Main {
     int radius = validator.getValidRadius("Введите радиус: ");
 
     Circle circle = new Circle(centerX, centerY, radius);
-    System.out.println("✓ Создан: " + circle.toString());
+    System.out.println(" Создан: " + circle.toString());
     System.out.println("Площадь круга: " + String.format("%.2f", circle.getArea()));
     return circle;
   }
@@ -544,7 +549,7 @@ public class Main {
     int side = validator.getValidSide("Введите длину стороны: ");
 
     Square square = new Square(x, y, side);
-    System.out.println("✓ Создан: " + square.toString());
+    System.out.println(" Создан: " + square.toString());
     System.out.println("Площадь квадрата: " + String.format("%.2f", square.getArea()));
     return square;
   }
@@ -559,7 +564,7 @@ public class Main {
     int height = validator.getValidHeight("Введите высоту: ");
 
     Rectangle rectangle = new Rectangle(x, y, width, height);
-    System.out.println("✓ Создан: " + rectangle.toString());
+    System.out.println(" Создан: " + rectangle.toString());
     System.out.println("Площадь прямоугольника: " + String.format("%.2f", rectangle.getArea()));
     return rectangle;
   }
@@ -588,11 +593,11 @@ public class Main {
 
       if (validator.isValidTriangle(a, b, c)) {
         Triangle triangle = new Triangle(a, b, c);
-        System.out.println("✓ Создан: " + triangle.toString());
+        System.out.println(" Создан: " + triangle.toString());
         System.out.println("Площадь треугольника: " + String.format("%.2f", triangle.getArea()));
         return triangle;
       } else {
-        System.out.println("✗ Ошибка: точки лежат на одной прямой.");
+        System.out.println(" Ошибка: точки лежат на одной прямой.");
         System.out.println("Попробуйте ввести другие координаты");
       }
     }
@@ -666,10 +671,23 @@ public class Main {
   }
   //Возведение в степень из строковых аргументов
   public static double powerFromStrings(String xStr, String yStr) {
-    int x = parseInt(xStr);
-    int y = parseInt(yStr);
+    // Используем короткие имена статических методов
+    int x = parseInt(xStr);  // вместо Integer.parseInt
+    int y = parseInt(yStr);  // вместо Integer.parseInt
 
-    return pow(x, y);
+    // Проверка на особые случаи
+    if (x == 0 && y == 0) {
+      throw new IllegalArgumentException("Ноль в степени ноль не определен");
+    }
+
+    if (y < 0) {
+      throw new IllegalArgumentException("Отрицательная степень не поддерживается для целых чисел");
+    }
+
+    // Используем короткое имя статического метода
+    double result = pow(x, y);  // вместо Math.pow
+
+    return result;
   }
   //Демонстрация клонирования точек
   public static void demonstratePointCloning(InputValidator validator) {
@@ -700,5 +718,7 @@ public class Main {
     System.out.println("Клонированная точка: " + clone);
     System.out.println("Точки равны: " + original.equals(clone));
   }
+
+
 
 }
