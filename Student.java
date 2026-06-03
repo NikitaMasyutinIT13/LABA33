@@ -8,149 +8,290 @@ import java.util.Collections;
  * Класс Student представляет студента с оценками
  * Содержит информацию о студенте и методы для работы с оценками
  */
+//FIXME: п.7 методы в PascalCase, п.8 переменные в camel_Case, п.13 валидация, п.21 лишние комментарии
+// public class Student {
+//   private String name;
+//   private String group;
+//   private List<Integer> grades;
+//
+//   //Конструктор по умолчанию
+//   public Student() {
+//     this.name = "Неизвестно";
+//     this.group = "Не назначена";
+//     this.grades = new ArrayList<>();
+//   }
+//
+//   //Конструктор с именем и группой
+//   public Student(String name, String group) {
+//     this.name = name;
+//     this.group = group;
+//     this.grades = new ArrayList<>();
+//   }
+//
+//   //Получение имени студента
+//   public String getName() {
+//     return name;
+//   }
+//
+//   //Получение группы студентa
+//   public String getGroup() {
+//     return group;
+//   }
+//
+//   //Получение неизменяемого списка оценок
+//   public List<Integer> getGrades() {
+//     return Collections.unmodifiableList(grades);
+//   }
+//
+//   //Установка имени студента
+//   public void setName(String name) {
+//     this.name = name;
+//   }
+//
+//   //Установка группы студента
+//   public void setGroup(String group) {
+//     this.group = group;
+//   }
+//
+//   //Добавление оценки с валидацией
+//   public void addGrade(int grade) {
+//     if (grade < 2 || grade > 5) {
+//       throw new InvalidGradeException("Оценка " + grade + " недопустима. Диапазон: 2-5");
+//     }
+//     grades.add(grade);
+//   }
+//
+//   //Попытка добавления оценки без исключения
+//   public boolean tryAddGrade(int grade) {
+//     if (grade >= 2 && grade <= 5) {
+//       grades.add(grade);
+//       return true;
+//     }
+//     return false;
+//   }
+//
+//   //Вычисление среднего балла студента
+//   public double getAverageGrade() {
+//     if (grades.isEmpty()) {
+//       return 0.0;
+//     }
+//
+//     int sum = 0;
+//     for (int grade : grades) {
+//       sum += grade;
+//     }
+//     return (double) sum / grades.size();
+//   }
+//
+//   //Получение количества оценок
+//   public int getGradesCount() {
+//     return grades.size();
+//   }
+//
+//   //Проверка наличия оценок
+//   public boolean hasGrades() {
+//     return !grades.isEmpty();
+//   }
+//
+//   //Проверка является ли студент отличником
+//   public boolean isExcellentStudent() {
+//     if (grades.isEmpty()) return false;
+//
+//     for (int grade : grades) {
+//       if (grade != 5) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+//
+//   //Проверка наличия неудовлетворительных оценок
+//   public boolean hasUnsatisfactoryGrades() {
+//     for (int grade : grades) {
+//       if (grade == 2) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+//
+//   //Подсчет количества конкретных оценок
+//   public int countGrade(int targetGrade) {
+//     int count = 0;
+//     for (int grade : grades) {
+//       if (grade == targetGrade) {
+//         count++;
+//       }
+//     }
+//     return count;
+//   }
+//
+//   //Получение базовой информации о студенте
+//   public String getStudentInfo() {
+//     return "Студент: " + name + ", Группа: " + group + ", Оценок: " + grades.size();
+//   }
+//
+//   //Полное строковое представление студента
+//   @Override
+//   public String toString() {
+//     String info = "Студент: " + name + ", Группа: " + group;
+//
+//     if (hasGrades()) {
+//       info += ", Оценки: " + grades + ", Средний: " + String.format("%.2f", getAverageGrade());
+//       if (isExcellentStudent()) info += " [ОТЛИЧНИК]";
+//       if (hasUnsatisfactoryGrades()) info += " [ЕСТЬ НЕУД]";
+//     } else {
+//       info += ", Оценки: нет";
+//     }
+//
+//     return info;
+//   }
+// }
+//
+// //Исключение для невалидных оценок
+// class InvalidGradeException extends RuntimeException {
+//   //Конструктор исключения
+//   public InvalidGradeException(String message) {
+//     super(message);
+//   }
+// }
+//FIXTO:
 public class Student {
-  private String name;
-  private String group;
-  private List<Integer> grades;
+    private String name;
+    private String group;
+    private List<Integer> grades;
 
-  //Конструктор по умолчанию
-  public Student() {
-    this.name = "Неизвестно";
-    this.group = "Не назначена";
-    this.grades = new ArrayList<>();
-  }
-
-  //Конструктор с именем и группой
-  public Student(String name, String group) {
-    this.name = name;
-    this.group = group;
-    this.grades = new ArrayList<>();
-  }
-
-  //Получение имени студента
-  public String getName() {
-    return name;
-  }
-
-  //Получение группы студентa
-  public String getGroup() {
-    return group;
-  }
-
-  //Получение неизменяемого списка оценок
-  public List<Integer> getGrades() {
-    return Collections.unmodifiableList(grades);
-  }
-
-  //Установка имени студента
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  //Установка группы студента
-  public void setGroup(String group) {
-    this.group = group;
-  }
-
-  //Добавление оценки с валидацией
-  public void addGrade(int grade) {
-    if (grade < 2 || grade > 5) {
-      throw new InvalidGradeException("Оценка " + grade + " недопустима. Диапазон: 2-5");
-    }
-    grades.add(grade);
-  }
-
-  //Попытка добавления оценки без исключения
-  public boolean tryAddGrade(int grade) {
-    if (grade >= 2 && grade <= 5) {
-      grades.add(grade);
-      return true;
-    }
-    return false;
-  }
-
-  //Вычисление среднего балла студента
-  public double getAverageGrade() {
-    if (grades.isEmpty()) {
-      return 0.0;
+    public Student() {
+        this.name = "Неизвестно";
+        this.group = "Не назначена";
+        this.grades = new ArrayList<>();
     }
 
-    int sum = 0;
-    for (int grade : grades) {
-      sum += grade;
+    public Student(String name, String group) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Имя не может быть пустым");
+        }
+        if (group == null || group.trim().isEmpty()) {
+            throw new IllegalArgumentException("Группа не может быть пустой");
+        }
+        this.name = name;
+        this.group = group;
+        this.grades = new ArrayList<>();
     }
-    return (double) sum / grades.size();
-  }
 
-  //Получение количества оценок
-  public int getGradesCount() {
-    return grades.size();
-  }
+    public String GetName() {
+        return name;
+    }
 
-  //Проверка наличия оценок
-  public boolean hasGrades() {
-    return !grades.isEmpty();
-  }
+    public String GetGroup() {
+        return group;
+    }
 
-  //Проверка является ли студент отличником
-  public boolean isExcellentStudent() {
-    if (grades.isEmpty()) return false;
+    public List<Integer> GetGrades() {
+        return Collections.unmodifiableList(grades);
+    }
 
-    for (int grade : grades) {
-      if (grade != 5) {
+    public void SetName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Имя не может быть пустым");
+        }
+        this.name = name;
+    }
+
+    public void SetGroup(String group) {
+        if (group == null || group.trim().isEmpty()) {
+            throw new IllegalArgumentException("Группа не может быть пустой");
+        }
+        this.group = group;
+    }
+
+    public void AddGrade(int grade) {
+        if (grade < 2 || grade > 5) {
+            throw new InvalidGradeException("Оценка " + grade + " недопустима. Диапазон: 2-5");
+        }
+        grades.add(grade);
+    }
+
+    public boolean TryAddGrade(int grade) {
+        if (grade >= 2 && grade <= 5) {
+            grades.add(grade);
+            return true;
+        }
         return false;
-      }
     }
-    return true;
-  }
 
-  //Проверка наличия неудовлетворительных оценок
-  public boolean hasUnsatisfactoryGrades() {
-    for (int grade : grades) {
-      if (grade == 2) {
+    public double GetAverageGrade() {
+        if (grades.isEmpty()) {
+            return 0.0;
+        }
+
+        int sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return (double) sum / grades.size();
+    }
+
+    public int GetGradesCount() {
+        return grades.size();
+    }
+
+    public boolean HasGrades() {
+        return !grades.isEmpty();
+    }
+
+    public boolean IsExcellentStudent() {
+        if (grades.isEmpty()) return false;
+
+        for (int grade : grades) {
+            if (grade != 5) {
+                return false;
+            }
+        }
         return true;
-      }
-    }
-    return false;
-  }
-
-  //Подсчет количества конкретных оценок
-  public int countGrade(int targetGrade) {
-    int count = 0;
-    for (int grade : grades) {
-      if (grade == targetGrade) {
-        count++;
-      }
-    }
-    return count;
-  }
-
-  //Получение базовой информации о студенте
-  public String getStudentInfo() {
-    return "Студент: " + name + ", Группа: " + group + ", Оценок: " + grades.size();
-  }
-
-  //Полное строковое представление студента
-  @Override
-  public String toString() {
-    String info = "Студент: " + name + ", Группа: " + group;
-
-    if (hasGrades()) {
-      info += ", Оценки: " + grades + ", Средний: " + String.format("%.2f", getAverageGrade());
-      if (isExcellentStudent()) info += " [ОТЛИЧНИК]";
-      if (hasUnsatisfactoryGrades()) info += " [ЕСТЬ НЕУД]";
-    } else {
-      info += ", Оценки: нет";
     }
 
-    return info;
-  }
+    public boolean HasUnsatisfactoryGrades() {
+        for (int grade : grades) {
+            if (grade == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int CountGrade(int target_Grade) {
+        int count = 0;
+        for (int grade : grades) {
+            if (grade == target_Grade) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String GetStudentInfo() {
+        return "Студент: " + name + ", Группа: " + group + ", Оценок: " + grades.size();
+    }
+
+    @Override
+    public String toString() {
+        String info = "Студент: " + name + ", Группа: " + group;
+
+        if (HasGrades()) {
+            info += ", Оценки: " + grades + ", Средний: " + String.format("%.2f", GetAverageGrade());
+            if (IsExcellentStudent()) info += " [ОТЛИЧНИК]";
+            if (HasUnsatisfactoryGrades()) info += " [ЕСТЬ НЕУД]";
+        } else {
+            info += ", Оценки: нет";
+        }
+
+        return info;
+    }
 }
 
-//Исключение для невалидных оценок
 class InvalidGradeException extends RuntimeException {
-  //Конструктор исключения
-  public InvalidGradeException(String message) {
-    super(message);
-  }
+    public InvalidGradeException(String message) {
+        super(message);
+    }
 }
