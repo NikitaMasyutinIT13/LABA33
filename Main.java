@@ -14,7 +14,7 @@ import static java.lang.Math.pow;
  * Главный класс приложения
  * Содержит точку входа и методы для работы со всеми системами
  */
-//FIXME: п.6 класс в PascalCase (Main - ок), п.7 методы в PascalCase, п.8 переменные в camel_Case, п.11 нет сокращений, п.21 лишние комментарии
+//FIXME: п.6 класс в PascalCase, п.7 методы в PascalCase, п.8 переменные в camel_Case, п.11 нет сокращений, п.21 лишние комментарии
 // public class Main {
 //   public static void main(String[] args) {
 //     if (args.length >= 2) {
@@ -68,7 +68,7 @@ public class Main {
         }
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Validator через getMenuChoice -> GetMenuChoice
+    //FIXME: п.7 методы в PascalCase
     // private static void runInteractiveMenu() {
     //FIXTO:
     private static void RunInteractiveMenu() {
@@ -126,7 +126,7 @@ public class Main {
         System.out.println("7. Выход");
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Validator через getValidStudentName -> GetValidStudentName
+    //FIXME: п.7 методы в PascalCase
     // private static void runStudentTask(InputValidator validator) {
     //FIXTO:
     private static void RunStudentTask(InputValidator validator) {
@@ -189,7 +189,7 @@ public class Main {
         }
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Validator через getMenuChoice -> GetMenuChoice
+    //FIXME: п.7 методы в PascalCase
     // private static void runPhoneBookTask(InputValidator validator) {
     //FIXTO:
     private static void RunPhoneBookTask(InputValidator validator) {
@@ -341,7 +341,7 @@ public class Main {
         }
     }
 
-    //FIXME: п.7 методы в PascalCase, п.11 исправить опечатку craeteThreePoints -> CreateThreePoints
+    //FIXME: п.7 методы в PascalCase
     // private static void runPointTask(InputValidator validator) {
     //FIXTO:
     private static void RunPointTask(InputValidator validator) {
@@ -364,7 +364,7 @@ public class Main {
         }
     }
 
-    //FIXME: п.7 методы в PascalCase, п.11 исправить опечатку craeteThreePoints -> CreateThreePoints
+    //FIXME: п.7 методы в PascalCase
     // private static void craeteThreePoints(InputValidator validator) {
     //FIXTO:
     private static void CreateThreePoints(InputValidator validator) {
@@ -385,7 +385,7 @@ public class Main {
         }
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Validator через getMenuChoice -> GetMenuChoice
+    //FIXME: п.7 методы в PascalCase
     // private static void runShapesTask(InputValidator validator) {
     //FIXTO:
     private static void RunShapesTask(InputValidator validator) {
@@ -481,7 +481,7 @@ public class Main {
         System.out.println("Площадь прямоугольника: " + String.format("%.2f", rectangle.GetArea()));
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Point через getX -> GetX
+    //FIXME: п.7 методы в PascalCase
     // private static void createTriangle(InputValidator validator) {
     //FIXTO:
     private static void CreateTriangle(InputValidator validator) {
@@ -525,7 +525,7 @@ public class Main {
         System.out.println(" Не удалось создать треугольник после " + maxAttempts + " попыток");
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Shape через getArea -> GetArea
+    //FIXME: п.7 методы в PascalCase
     // private static void demonstratePolymorphism(InputValidator validator) {
     //FIXTO:
     private static void DemonstratePolymorphism(InputValidator validator) {
@@ -768,7 +768,7 @@ public class Main {
         return pow(x, y);
     }
 
-    //FIXME: п.7 методы в PascalCase, вызовы методов Point через setX -> SetX
+    //FIXME: п.7 методы в PascalCase
     // public static void demonstratePointCloning(InputValidator validator) {
     //FIXTO:
     public static void DemonstratePointCloning(InputValidator validator) {
