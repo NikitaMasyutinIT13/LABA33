@@ -14,7 +14,7 @@ import static java.lang.Math.pow;
  * Главный класс приложения
  * Содержит точку входа и методы для работы со всеми системами
  */
-//FIXME: п.6 класс в PascalCase, п.7 методы в PascalCase, п.8 переменные в camel_Case, п.11 нет сокращений, п.21 лишние комментарии
+//FIXME: п.7 методы в PascalCase
 // public class Main {
 //   public static void main(String[] args) {
 //     if (args.length >= 2) {
@@ -23,13 +23,6 @@ import static java.lang.Math.pow;
 //     }
 //
 //     runInteractiveMenu();
-//   }
-//
-//   /**
-//    * Выполнение возведения в степень из аргументов командной строки
-//    */
-//   private static void executePowerCalculation(String[] args) {
-//     ...
 //   }
 // }
 //FIXTO:
@@ -53,11 +46,11 @@ public class Main {
         System.out.println("=== ВОЗВЕДЕНИЕ В СТЕПЕНЬ ИЗ АРГУМЕНТОВ КОМАНДНОЙ СТРОКИ ===");
 
         try {
-            String xStr = args[0];
-            String yStr = args[1];
+            String x_String = args[0];
+            String y_String = args[1];
 
-            double result = PowerFromStrings(xStr, yStr);
-            System.out.printf("Результат: %s ^ %s = %.2f\n", xStr, yStr, result);
+            double result = PowerFromStrings(x_String, y_String);
+            System.out.printf("Результат: %s ^ %s = %.2f\n", x_String, y_String, result);
 
         } catch (NumberFormatException e) {
             System.out.println("Ошибка: аргументы должны быть целыми числами");
@@ -248,10 +241,10 @@ public class Main {
         String name = validator.GetValidContactName("Введите имя: ");
         String phone = validator.GetValidPhone("Введите телефон: ");
 
-        String oldPhone = phoneBook.AddContact(phone, name);
+        String old_Phone = phoneBook.AddContact(phone, name);
 
-        if (oldPhone != null) {
-            System.out.println(" Контакт обновлен. Старый телефон: " + oldPhone);
+        if (old_Phone != null) {
+            System.out.println(" Контакт обновлен. Старый телефон: " + old_Phone);
         } else {
             System.out.println(" Контакт добавлен: " + name + " - " + phone);
         }
@@ -306,13 +299,13 @@ public class Main {
         System.out.println("\n--- ПОИСК ИМЕН ПО НАЧАЛУ ---");
 
         String prefix = validator.GetValidContactName("Введите начало имени: ");
-        String[] matchingNames = phoneBook.GetNamesByPrefix(prefix);
+        String[] matching_Names = phoneBook.GetNamesByPrefix(prefix);
 
-        if (matchingNames.length > 0) {
-            System.out.println("Найдено " + matchingNames.length + " контактов:");
-            for (int i = 0; i < matchingNames.length; i++) {
-                String phone = phoneBook.GetPhoneByName(matchingNames[i]);
-                System.out.println((i + 1) + ". " + matchingNames[i] + " - " + phone);
+        if (matching_Names.length > 0) {
+            System.out.println("Найдено " + matching_Names.length + " контактов:");
+            for (int i = 0; i < matching_Names.length; i++) {
+                String phone = phoneBook.GetPhoneByName(matching_Names[i]);
+                System.out.println((i + 1) + ". " + matching_Names[i] + " - " + phone);
             }
         } else {
             System.out.println("Контакты, начинающиеся с '" + prefix + "' не найдены");
@@ -326,11 +319,11 @@ public class Main {
         System.out.println("\n--- СТАТИСТИКА СПРАВОЧНИКА ---");
         System.out.println("Общее количество контактов: " + phoneBook.GetContactCount());
 
-        String[] allPhones = phoneBook.GetAllPhones();
-        String[] allNames = phoneBook.GetAllNames();
+        String[] all_Phones = phoneBook.GetAllPhones();
+        String[] all_Names = phoneBook.GetAllNames();
 
-        System.out.println("Всего телефонов: " + allPhones.length);
-        System.out.println("Всего имен: " + allNames.length);
+        System.out.println("Всего телефонов: " + all_Phones.length);
+        System.out.println("Всего имен: " + all_Names.length);
 
         if (phoneBook.GetContactCount() > 0) {
             System.out.println("\nПервые 5 контактов:");
@@ -439,11 +432,11 @@ public class Main {
         System.out.println("\n--- СОЗДАНИЕ КРУГА ---");
 
         System.out.println("Центр круга:");
-        int centerX = validator.GetValidCoordinate("Введите координату X центра: ");
-        int centerY = validator.GetValidCoordinate("Введите координату Y центра: ");
+        int center_X = validator.GetValidCoordinate("Введите координату X центра: ");
+        int center_Y = validator.GetValidCoordinate("Введите координату Y центра: ");
         int radius = validator.GetValidRadius("Введите радиус: ");
 
-        Circle circle = new Circle(centerX, centerY, radius);
+        Circle circle = new Circle(center_X, center_Y, radius);
         System.out.println(" Создан: " + circle.toString());
         System.out.println("Площадь круга: " + String.format("%.2f", circle.GetArea()));
     }
@@ -487,11 +480,11 @@ public class Main {
     private static void CreateTriangle(InputValidator validator) {
         System.out.println("\n--- СОЗДАНИЕ ТРЕУГОЛЬНИКА ---");
 
-        Point a, b, c;
-        int maxAttempts = 3;
+        Point point_A, point_B, point_C;
+        int max_Attempts = 3;
         int attempts = 0;
 
-        while (attempts < maxAttempts) {
+        while (attempts < max_Attempts) {
             System.out.println("Точка A:");
             int x1 = validator.GetValidCoordinate("Введите X1: ");
             int y1 = validator.GetValidCoordinate("Введите Y1: ");
@@ -504,25 +497,25 @@ public class Main {
             int x3 = validator.GetValidCoordinate("Введите X3: ");
             int y3 = validator.GetValidCoordinate("Введите Y3: ");
 
-            a = new Point(x1, y1);
-            b = new Point(x2, y2);
-            c = new Point(x3, y3);
+            point_A = new Point(x1, y1);
+            point_B = new Point(x2, y2);
+            point_C = new Point(x3, y3);
 
-            if (validator.IsValidTriangle(a, b, c)) {
-                Triangle triangle = new Triangle(a, b, c);
+            if (validator.IsValidTriangle(point_A, point_B, point_C)) {
+                Triangle triangle = new Triangle(point_A, point_B, point_C);
                 System.out.println(" Создан: " + triangle.toString());
                 System.out.println("Площадь треугольника: " + String.format("%.2f", triangle.GetArea()));
                 return;
             } else {
                 attempts++;
-                System.out.println(" Ошибка: точки лежат на одной прямой. Попытка " + attempts + " из " + maxAttempts);
-                if (attempts < maxAttempts) {
+                System.out.println(" Ошибка: точки лежат на одной прямой. Попытка " + attempts + " из " + max_Attempts);
+                if (attempts < max_Attempts) {
                     System.out.println("Попробуйте ввести другие координаты");
                 }
             }
         }
 
-        System.out.println(" Не удалось создать треугольник после " + maxAttempts + " попыток");
+        System.out.println(" Не удалось создать треугольник после " + max_Attempts + " попыток");
     }
 
     //FIXME: п.7 методы в PascalCase
@@ -546,20 +539,20 @@ public class Main {
 
             int choice = validator.GetMenuChoice("Выберите действие: ", 5);
 
-            Shape newShape = null;
+            Shape new_Shape = null;
 
             switch (choice) {
                 case 1:
-                    newShape = CreateCircleForDemo(validator);
+                    new_Shape = CreateCircleForDemo(validator);
                     break;
                 case 2:
-                    newShape = CreateSquareForDemo(validator);
+                    new_Shape = CreateSquareForDemo(validator);
                     break;
                 case 3:
-                    newShape = CreateRectangleForDemo(validator);
+                    new_Shape = CreateRectangleForDemo(validator);
                     break;
                 case 4:
-                    newShape = CreateTriangleForDemo(validator);
+                    new_Shape = CreateTriangleForDemo(validator);
                     break;
                 case 5:
                     creating = false;
@@ -568,8 +561,8 @@ public class Main {
                     break;
             }
 
-            if (newShape != null) {
-                shapes.add(newShape);
+            if (new_Shape != null) {
+                shapes.add(new_Shape);
             }
         }
 
@@ -584,17 +577,17 @@ public class Main {
 
         ShapeSum.PrintShapesInfo(shapes);
 
-        double totalArea = ShapeSum.CalculateTotalArea(shapes);
+        double total_Area = ShapeSum.CalculateTotalArea(shapes);
         System.out.println("\n--- ОБЩАЯ ПЛОЩАДЬ ВСЕХ ФИГУР ---");
-        System.out.printf("Общая площадь: %.2f\n", totalArea);
+        System.out.printf("Общая площадь: %.2f\n", total_Area);
 
         System.out.println("\n--- ДЕМОНСТРАЦИЯ ВИРТУАЛЬНОГО ВЫЗОВА ---");
         System.out.println("Вызов GetArea() для каждой фигуры (полиморфизм):");
         for (int i = 0; i < shapes.size(); i++) {
             Shape shape = shapes.get(i);
-            String typeName = shape.getClass().getSimpleName();
+            String type_Name = shape.getClass().getSimpleName();
             double area = shape.GetArea();
-            System.out.printf("%d. %s: GetArea() = %.2f\n", i + 1, typeName, area);
+            System.out.printf("%d. %s: GetArea() = %.2f\n", i + 1, type_Name, area);
         }
     }
 
@@ -604,11 +597,11 @@ public class Main {
     private static Circle CreateCircleForDemo(InputValidator validator) {
         System.out.println("\n--- СОЗДАНИЕ КРУГА ---");
         System.out.println("Центр круга:");
-        int centerX = validator.GetValidCoordinate("Введите координату X центра: ");
-        int centerY = validator.GetValidCoordinate("Введите координату Y центра: ");
+        int center_X = validator.GetValidCoordinate("Введите координату X центра: ");
+        int center_Y = validator.GetValidCoordinate("Введите координату Y центра: ");
         int radius = validator.GetValidRadius("Введите радиус: ");
 
-        Circle circle = new Circle(centerX, centerY, radius);
+        Circle circle = new Circle(center_X, center_Y, radius);
         System.out.println(" Создан: " + circle.toString());
         System.out.println("Площадь круга: " + String.format("%.2f", circle.GetArea()));
         return circle;
@@ -653,7 +646,7 @@ public class Main {
     private static Triangle CreateTriangleForDemo(InputValidator validator) {
         System.out.println("\n--- СОЗДАНИЕ ТРЕУГОЛЬНИКА ---");
 
-        Point a, b, c;
+        Point point_A, point_B, point_C;
 
         while (true) {
             System.out.println("Точка A:");
@@ -668,12 +661,12 @@ public class Main {
             int x3 = validator.GetValidCoordinate("Введите X3: ");
             int y3 = validator.GetValidCoordinate("Введите Y3: ");
 
-            a = new Point(x1, y1);
-            b = new Point(x2, y2);
-            c = new Point(x3, y3);
+            point_A = new Point(x1, y1);
+            point_B = new Point(x2, y2);
+            point_C = new Point(x3, y3);
 
-            if (validator.IsValidTriangle(a, b, c)) {
-                Triangle triangle = new Triangle(a, b, c);
+            if (validator.IsValidTriangle(point_A, point_B, point_C)) {
+                Triangle triangle = new Triangle(point_A, point_B, point_C);
                 System.out.println(" Создан: " + triangle.toString());
                 System.out.println("Площадь треугольника: " + String.format("%.2f", triangle.GetArea()));
                 return triangle;
@@ -710,8 +703,8 @@ public class Main {
 
         for (int i = 0; i < polyline.size(); i++) {
             Point point = polyline.get(i);
-            String pointType = (i == polyline.size() - 1) ? "(замыкающая)" : "";
-            System.out.printf("%d. %s %s\n", i + 1, point, pointType);
+            String point_Type = (i == polyline.size() - 1) ? "(замыкающая)" : "";
+            System.out.printf("%d. %s %s\n", i + 1, point, point_Type);
         }
 
         Point first = polyline.get(0);
@@ -735,27 +728,27 @@ public class Main {
         System.out.println("Точка A:");
         int x1 = validator.GetValidCoordinate("Введите X1: ");
         int y1 = validator.GetValidCoordinate("Введите Y1: ");
-        Point pointA = new Point(x1, y1);
+        Point point_A = new Point(x1, y1);
 
         System.out.println("Точка B:");
         int x2 = validator.GetValidCoordinate("Введите X2: ");
         int y2 = validator.GetValidCoordinate("Введите Y2: ");
-        Point pointB = new Point(x2, y2);
+        Point point_B = new Point(x2, y2);
 
         System.out.println("\n--- Сравнение точек ---");
-        System.out.println("Точка A: " + pointA);
-        System.out.println("Точка B: " + pointB);
+        System.out.println("Точка A: " + point_A);
+        System.out.println("Точка B: " + point_B);
 
         System.out.println("\nРезультаты сравнения:");
-        System.out.println("A.equals(B): " + pointA.equals(pointB));
+        System.out.println("A.equals(B): " + point_A.equals(point_B));
     }
 
-    //FIXME: п.7 методы в PascalCase
+    //FIXME: п.7 методы в PascalCase, п.8 переменные в camel_Case 
     // public static double powerFromStrings(String xStr, String yStr) {
     //FIXTO:
-    public static double PowerFromStrings(String xStr, String yStr) {
-        int x = parseInt(xStr);
-        int y = parseInt(yStr);
+    public static double PowerFromStrings(String x_String, String y_String) {
+        int x = parseInt(x_String);
+        int y = parseInt(y_String);
 
         if (x == 0 && y == 0) {
             throw new IllegalArgumentException("Ноль в степени ноль не определен");
@@ -788,11 +781,11 @@ public class Main {
         System.out.println("Но имеют одинаковые значения: " + original.equals(clone));
 
         System.out.println("\n--- Демонстрация независимости ---");
-        int newX = validator.GetValidCoordinate("Введите новое X для оригинала: ");
-        int newY = validator.GetValidCoordinate("Введите новое Y для оригинала: ");
+        int new_X = validator.GetValidCoordinate("Введите новое X для оригинала: ");
+        int new_Y = validator.GetValidCoordinate("Введите новое Y для оригинала: ");
 
-        original.SetX(newX);
-        original.SetY(newY);
+        original.SetX(new_X);
+        original.SetY(new_Y);
 
         System.out.println("После изменения оригинала:");
         System.out.println("Оригинальная точка: " + original);
