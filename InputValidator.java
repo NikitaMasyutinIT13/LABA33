@@ -463,7 +463,7 @@ public class InputValidator {
      * @param c третья точка
      * @return true если треугольник существует, false если вырожден
      */
-    //FIXME: п.7 методы в PascalCase, вызовы методов Point через getX() -> GetX()
+    //FIXME: п.7 методы в PascalCase
     // public boolean isValidTriangle(Point a, Point b, Point c) {
     //     int area = a.getX() * (b.getY() - c.getY()) +
     //             b.getX() * (c.getY() - a.getY()) +
